@@ -11,13 +11,12 @@ declare global {
 
 const jwtSecret = 'secreto'; // Chave secreta para verificar o token JWT
 
-// Declare um tipo personalizado para o payload do JWT que inclua 'userId'
 interface CustomJwtPayload extends JwtPayload {
     userId: string;
 }
 
 export default function authMiddleware(req: Request, res: Response, next: NextFunction) {
-    const token = req.header('x-auth-token'); // Por exemplo, você pode enviar o token no cabeçalho 'x-auth-token'
+    const token = req.header('x-auth-token');
 
     if (!token) {
         return res.status(401).json({ message: 'Token de autenticação não fornecido.' });
